@@ -29,37 +29,85 @@ window.onload = function(){
     board.height = boardheight;
     board.width = boardwidth;
     context = board.getContext("2d");
+
+    loadImages();
+
 }
+
+//X = wall, O = skip, P = pac man, ' ' = food
+//Ghosts: b = blue, o = orange, p = pink, r = red
+
+const tileMap = [
+    "XXXXXXXXXXXXXXXXXXX",
+    "X        X        X",
+    "X XX XXX X XXX XX X",
+    "X                 X",
+    "X XX X XXXXX X XX X",
+    "X    X       X    X",
+    "XXXX XXXX XXXX XXXX",
+    "OOOX X       X XOOO",
+    "XXXX X XXrXX X XXXX",
+    "O       bpo       O",
+    "XXXX X XXXXX X XXXX",
+    "OOOX X       X XOOO",
+    "XXXX X XXXXX X XXXX",
+    "X        X        X",
+    "X XX XXX X XXX XX X",
+    "X  X     P     X  X",
+    "XX X X XXXXX X X XX",
+    "X    X   X   X    X",
+    "X XXXXXX X XXXXXX X",
+    "X                 X",
+    "XXXXXXXXXXXXXXXXXXX" 
+];
+// const tileMap = [
+//     "XXXXXXXXXXXXXXXXXXX",
+//     "X        X        X",
+//     "X XX XXX X XXX XX X",
+//     "X                 X",
+//     "X XX X XXXXX X XX X",
+//     "X    X       X    X",
+//     "XXXX XXXX XXXX XXXX",
+//     "OOOX X       X XOOO",
+
+//     "X        X        X",
+//     "X XX XXX X XXX XX X",
+
+//     "XXXXXXXXXXXXXXXXXXX" 
+// ];
+
+
+
 
 function loadImages(){
     wallImage = new Image();
-    wallImage.src = "images/wall.png";
+    wallImage.src = "assets/wall.png";
 
     blueGhostImage = new Image();
-    blueGhostImage.src = "images/blueGhost.png";
+    blueGhostImage.src = "assets/blueGhost.png";
 
     orangeGhostImage = new Image();
-    orangeGhostImage.src = "images/orangeGhost.png";
+    orangeGhostImage.src = "assets/orangeGhost.png";
 
     pinkGhostImage = new Image();
-    pinkGhostImage.src = "images/pinkGhost.png";
+    pinkGhostImage.src = "assets/pinkGhost.png";
 
     redGhostImage = new Image();
-    redGhostImage.src = "images/redGhost.png";
+    redGhostImage.src = "assets/redGhost.png";
 
     //pac-man images
 
     pacmanUpImage = new Image();
-    pacmanUpImage.src = "images/pacmanUp.png";
+    pacmanUpImage.src = "assets/pacmanUp.png";
 
     pacmanDownImage = new Image();
-    pacmanDownImage.src = "images/pacmanDown.png";
+    pacmanDownImage.src = "assets/pacmanDown.png";
 
     pacmanLeftImage = new Image();
-    pacmanLeftImage.src = "images/pacmanLeft.png";
+    pacmanLeftImage.src = "assets/pacmanLeft.png";
 
     pacmanRightImage = new Image();
-    pacmanRightImage.src = "images/pacmanRight.png";
+    pacmanRightImage.src = "assets/pacmanRight.png";
 
     
 }
