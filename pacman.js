@@ -29,37 +29,39 @@ window.onload = function(){
     board.height = boardheight;
     board.width = boardwidth;
     context = board.getContext("2d");
+
+    loadImages();
 }
 
 function loadImages(){
     wallImage = new Image();
-    wallImage.src = "images/wall.png";
+    wallImage.src = "assets/wall.png";
 
     blueGhostImage = new Image();
-    blueGhostImage.src = "images/blueGhost.png";
+    blueGhostImage.src = "assets/blueGhost.png";
 
     orangeGhostImage = new Image();
-    orangeGhostImage.src = "images/orangeGhost.png";
+    orangeGhostImage.src = "assets/orangeGhost.png";
 
     pinkGhostImage = new Image();
-    pinkGhostImage.src = "images/pinkGhost.png";
+    pinkGhostImage.src = "assets/pinkGhost.png";
 
     redGhostImage = new Image();
-    redGhostImage.src = "images/redGhost.png";
+    redGhostImage.src = "assets/redGhost.png";
 
     //pac-man images
 
     pacmanUpImage = new Image();
-    pacmanUpImage.src = "images/pacmanUp.png";
+    pacmanUpImage.src = "assets/pacmanUp.png";
 
     pacmanDownImage = new Image();
-    pacmanDownImage.src = "images/pacmanDown.png";
+    pacmanDownImage.src = "assets/pacmanDown.png";
 
     pacmanLeftImage = new Image();
-    pacmanLeftImage.src = "images/pacmanLeft.png";
+    pacmanLeftImage.src = "assets/pacmanLeft.png";
 
     pacmanRightImage = new Image();
-    pacmanRightImage.src = "images/pacmanRight.png";
+    pacmanRightImage.src = "assets/pacmanRight.png";
 
     
 }
