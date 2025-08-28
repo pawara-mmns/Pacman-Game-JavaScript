@@ -192,6 +192,14 @@ function move(){
     pacman.x += pacman.velocityX;
     pacman.y += pacman.velocityY;
     
+    //check for wall collision
+    for(let wall of walls.values()){
+        if(collision(pacman, wall)){
+            pacman.x -= pacman.velocityX;
+            pacman.y -= pacman.velocityY;
+            break;
+        }
+    }
 }
 
 function movePacman(e){
