@@ -22,26 +22,6 @@ let wallImage;
 // let ghostImage;
 // let fruitImage;
 
-
-
-window.onload = function(){
-    board = document.getElementById("board");
-    board.height = boardheight;
-    board.width = boardwidth;
-    context = board.getContext("2d");
-
-    loadImages();
-    loadMap();
-
-    // console.log(walls.size);
-    // console.log(foods.size);
-    // console.log(ghosts.size);
-
-    update();
-
-    document,addEventListener("keyup", movePacman);
-}
-
 //X = wall, O = skip, P = pac man, ' ' = food
 //Ghosts: b = blue, o = orange, p = pink, r = red
 
@@ -89,6 +69,33 @@ const foods = new Set();
 const ghosts = new Set();
 let pacman;
 
+const direction = ["U", "D", "L", "R"]; //up, down, left, right
+
+
+
+window.onload = function(){
+    board = document.getElementById("board");
+    board.height = boardheight;
+    board.width = boardwidth;
+    context = board.getContext("2d");
+
+    loadImages();
+    loadMap();
+
+    // console.log(walls.size);
+    // console.log(foods.size);
+    // console.log(ghosts.size);
+
+    for (let ghost of ghosts.values()){
+        // const newDirection = direction[Math.floor(Math.random() * direction.length)]
+        const newDirection = direction[Math.floor(Math.random() * 4)] //0-3
+        ghost.updateDirection(newDirection);
+    }
+
+    update();
+
+    document,addEventListener("keyup", movePacman);
+}
 
 function loadImages(){
     wallImage = new Image();
@@ -199,6 +206,10 @@ function move(){
             pacman.y -= pacman.velocityY;
             break;
         }
+    }
+    for (let ghost of ghosts.values()){
+        ghost.x += ghost.velocityX;
+        ghost.y += ghost.velocityY;
     }
 }
 
