@@ -61,7 +61,7 @@ const tileMap = [
     "XXXX X XXXXX X XXXX",
     "X        X        X",
     "X XX XXX X XXX XX X",
-    "X  X    XPX     X  X",
+    "X  X     P     X  X",
     "XX X X XXXXX X X XX",
     "X    X   X   X    X",
     "X XXXXXX X XXXXXX X",
@@ -215,6 +215,20 @@ function movePacman(e){
     else if(e.code == "ArrowRight" || e.code == "KeyD"){
         pacman.updateDirection("R");
     }
+
+    //update pacman images
+    if(pacman.direction == "U"){
+        pacman.image = pacmanUpImage;
+    }
+    else if(pacman.direction == "D"){
+        pacman.image = pacmanDownImage;
+    }
+    else if(pacman.direction == "L"){
+        pacman.image = pacmanLeftImage;
+    }
+    else if(pacman.direction == "R"){
+        pacman.image = pacmanRightImage;
+    }
 }
 
 function collision(a, b){
@@ -242,8 +256,21 @@ class Block {
     }
 
     updateDirection(direction){
+        const prevDirection = this.direction;
         this.direction = direction;
         this.updateVelocity();
+        this.x += this.velocityX;
+        this.y += this.velocityY;
+
+        for(let wall of walls.values()){
+            if(collision(this, wall)){
+                this.x -= this.velocityX;
+                this.y -= this.velocityY;
+                this.direction = prevDirection;
+                this.updatdVelocity();
+                return;
+            }
+        }
     }
     updateVelocity(){
         if (this.direction == 'U') {
