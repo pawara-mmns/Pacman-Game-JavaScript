@@ -114,6 +114,54 @@ function loadImages(){
     
 }
 
+function loadMap(){
+    walls.clear();
+    food.clear();
+    ghosts.clear();
+
+    for (let r = 0; r < rowCount; r++){
+        for (let c = 0; c < columnCount; c++){
+            const row =tileMap[r];
+            const tileMapChar = row[c];
+
+            const x = c * tileSize;
+            const y = r * tileSize;
+
+            if (tileMapChar === "X"){ //Block wall
+                const wall = new Block(wallImage, x, y, tileSize, tileSize);
+                walls.add(wall);
+            }
+            else if (tileMapChar == "b"){ //blue ghost
+                const ghost = new Block(blueGhostImage, x, y, tileSize, tileSize);
+                ghosts.add(ghost); 
+            }
+            else if (tileMapChar == "o") {  //orange ghost
+                const ghost = new Block(orangeGhostImage, x, y, tileSize, tileSize);
+                ghosts.add(ghost); 
+            }
+            else if (tileMapChar == "p") {  //pink ghost
+                const ghost = new Block(pinkGhostImage, x, y, tileSize, tileSize);
+                ghosts.add(ghost); 
+            }
+            else if (tileMapChar == "r" ){ //ref ghost
+                const ghost = new Block(redGhostImage, x, y, tileSize, tileSize);
+                ghosts.add(ghost); 
+            }
+            else if (tileMapChar == "P") { //pac-man
+                pacman = new Block(pacmanRightImage, x, y, tileSize, tileSize);
+            }
+            else if(tileMapChar == " "){ //empty food
+                const food = new Block(null, x+14, y+14, 4,4)
+                food.add(food);
+
+            }
+           
+
+    
+        }
+    }
+}   
+
 class Block {
     constructor(image, x, y, width, height){
         this.image = image;
@@ -126,4 +174,4 @@ class Block {
         this.startY = y;
     }
 }
-
+    
