@@ -31,6 +31,10 @@ window.onload = function(){
     context = board.getContext("2d");
 
     loadImages();
+    loadMap();
+    // console.log(walls.size);
+    // console.log(foods.size);
+    // console.log(ghosts.size);
 }
 
 //X = wall, O = skip, P = pac man, ' ' = food
@@ -76,7 +80,7 @@ const tileMap = [
 // ];
 
 const walls = new Set();
-const food = new Set();
+const foods = new Set();
 const ghosts = new Set();
 let pacman;
 
@@ -116,7 +120,7 @@ function loadImages(){
 
 function loadMap(){
     walls.clear();
-    food.clear();
+    foods.clear();
     ghosts.clear();
 
     for (let r = 0; r < rowCount; r++){
@@ -127,37 +131,33 @@ function loadMap(){
             const x = c * tileSize;
             const y = r * tileSize;
 
-            if (tileMapChar === "X"){ //Block wall
+           if (tileMapChar == 'X') { //block wall
                 const wall = new Block(wallImage, x, y, tileSize, tileSize);
-                walls.add(wall);
+                walls.add(wall);  
             }
-            else if (tileMapChar == "b"){ //blue ghost
+            else if (tileMapChar == 'b') { //blue ghost
                 const ghost = new Block(blueGhostImage, x, y, tileSize, tileSize);
-                ghosts.add(ghost); 
+                ghosts.add(ghost);
             }
-            else if (tileMapChar == "o") {  //orange ghost
+            else if (tileMapChar == 'o') { //orange ghost
                 const ghost = new Block(orangeGhostImage, x, y, tileSize, tileSize);
-                ghosts.add(ghost); 
+                ghosts.add(ghost);
             }
-            else if (tileMapChar == "p") {  //pink ghost
+            else if (tileMapChar == 'p') { //pink ghost
                 const ghost = new Block(pinkGhostImage, x, y, tileSize, tileSize);
-                ghosts.add(ghost); 
+                ghosts.add(ghost);
             }
-            else if (tileMapChar == "r" ){ //ref ghost
+            else if (tileMapChar == 'r') { //red ghost
                 const ghost = new Block(redGhostImage, x, y, tileSize, tileSize);
-                ghosts.add(ghost); 
+                ghosts.add(ghost);
             }
-            else if (tileMapChar == "P") { //pac-man
+            else if (tileMapChar == 'P') { //pacman
                 pacman = new Block(pacmanRightImage, x, y, tileSize, tileSize);
             }
-            else if(tileMapChar == " "){ //empty food
-                const food = new Block(null, x+14, y+14, 4,4)
-                food.add(food);
-
+            else if (tileMapChar == ' ') { //empty is food
+                const food = new Block(null, x + 14, y + 14, 4, 4);
+                foods.add(food);
             }
-           
-
-    
         }
     }
 }   
