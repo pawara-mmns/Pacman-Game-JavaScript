@@ -174,6 +174,7 @@ function update(){
 }
 
 function draw(){
+    context.clearRect(0, 0, board.width, board.height);
     context.drawImage(pacman.image, pacman.x, pacman.y, pacman.width, pacman.height);
     for(let ghost of ghosts.values()){
         context.drawImage(ghost.image, ghost.x, ghost.y, ghost.width, ghost.height);
@@ -190,6 +191,7 @@ function draw(){
 function move(){
     pacman.x += pacman.velocityX;
     pacman.y += pacman.velocityY;
+    
 }
 
 function movePacman(e){
@@ -205,6 +207,13 @@ function movePacman(e){
     else if(e.code == "ArrowRight" || e.code == "KeyD"){
         pacman.updateDirection("R");
     }
+}
+
+function collision(a, b){
+    return a.x < b.x + b.width &&
+           a.x + a.width > b.x &&
+           a.y < b.y + b.height &&
+           a.y + a.height > b.y
 }
 
 class Block {
