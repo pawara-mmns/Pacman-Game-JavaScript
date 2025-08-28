@@ -31,7 +31,6 @@ window.onload = function(){
     context = board.getContext("2d");
 
     loadImages();
-
 }
 
 //X = wall, O = skip, P = pac man, ' ' = food
