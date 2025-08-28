@@ -75,7 +75,10 @@ const tileMap = [
 //     "XXXXXXXXXXXXXXXXXXX" 
 // ];
 
-
+const walls = new Set();
+const food = new Set();
+const ghosts = new Set();
+let pacman;
 
 
 function loadImages(){
