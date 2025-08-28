@@ -168,7 +168,7 @@ function loadMap(){
 }   
 
 function update(){
-
+    move();
     draw();
     setTimeout(update, 50);  //20 FPS -> 1000/20 = 50ms
 }
@@ -185,6 +185,11 @@ function draw(){
     for(let food of foods.values()){
         context.fillRect(food.x, food.y, food.width, food.height);
     }
+}
+
+function move(){
+    pacman.x += pacman.velocityX;
+    pacman.y += pacman.velocityY;
 }
 
 function movePacman(e){
@@ -221,25 +226,26 @@ class Block {
 
     updateDirection(direction){
         this.direction = direction;
-        this.updateDirection();
+        this.updateVelocity();
     }
     updateVelocity(){
-        if(this.direction == "U"){
+        if (this.direction == 'U') {
             this.velocityX = 0;
             this.velocityY = -tileSize/4;
         }
-        else if(this.direction == "D"){
+        else if (this.direction == 'D') {
             this.velocityX = 0;
             this.velocityY = tileSize/4;
         }
-        else if(this.direction == "L"){
+        else if (this.direction == 'L') {
             this.velocityX = -tileSize/4;
             this.velocityY = 0;
         }
-        else if(this.direction == "R"){
+        else if (this.direction == 'R') {
             this.velocityX = tileSize/4;
             this.velocityY = 0;
         }
+
     }
 }
     
