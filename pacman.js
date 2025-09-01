@@ -219,6 +219,10 @@ function move(){
         }
     }
     for (let ghost of ghosts.values()){
+        if(collision(pacman, ghost)){
+            lives -= 1;
+            resetPosition();
+        }
         if(ghost.y == tileSize*9 && ghost.direction !== "U" && ghost.direction != "D"){
             ghost.updateDirection("U");
             
@@ -282,6 +286,17 @@ function collision(a, b){
            a.y + a.height > b.y
 }
 
+function resetPosition(){
+    pacman.reset();
+    pacman.velocityX = 0;
+    pacman.velocityY = 0;
+    for(let ghost of ghosts.values()){
+        ghost.reset();
+        const newDirection = direction[Math.floor(Math.random() * 4)];
+        ghost.updateDirection(newDirection);
+    }
+}
+
 class Block {
     constructor(image, x, y, width, height){
         this.image = image;
@@ -334,6 +349,10 @@ class Block {
             this.velocityY = 0;
         }
 
+    }
+    reset(){
+        this.x = this.startX;
+        this.y = this.startY;
     }
 }
     
