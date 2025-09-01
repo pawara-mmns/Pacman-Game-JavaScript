@@ -211,10 +211,11 @@ function move(){
         ghost.x += ghost.velocityX;
         ghost.y += ghost.velocityY;
         for (let wall of walls.values()){
-            if(collision(ghost, wall)){
+            if(collision(ghost, wall) || ghost.x <=0 || ghost.x + ghost.width >= boardwidth){
                 ghost.x -= ghost.velocityX;
                 ghost.y -= ghost.velocityY;
-                break;
+                const newDirection = direction[Math.floor(Math.random() * 4)];
+                ghost.updateDirection(newDirection);
             }
         }
     }
