@@ -210,6 +210,13 @@ function move(){
     for (let ghost of ghosts.values()){
         ghost.x += ghost.velocityX;
         ghost.y += ghost.velocityY;
+        for (let wall of walls.values()){
+            if(collision(ghost, wall)){
+                ghost.x -= ghost.velocityX;
+                ghost.y -= ghost.velocityY;
+                break;
+            }
+        }
     }
 }
 
