@@ -70,7 +70,9 @@ const ghosts = new Set();
 let pacman;
 
 const direction = ["U", "D", "L", "R"]; //up, down, left, right
-
+let score = 0;
+let lives = 3;
+let gameOver = false;
 
 
 window.onload = function(){
@@ -193,6 +195,15 @@ function draw(){
     for(let food of foods.values()){
         context.fillRect(food.x, food.y, food.width, food.height);
     }
+    //score
+    context.fillStyle = "white";
+    context.font = "14px sans-serif";
+    if(gameOver){
+        context.fillText("Game Over" + String(score), tileSize/2, tileSize/2);
+    }
+    else{
+        context.fillText("X" + String(lives) + " " + String(score), tileSize/2, tileSize/2);
+    }
 }
 
 function move(){
@@ -223,6 +234,16 @@ function move(){
             }
         }
     }
+    //check for food collision
+    let foodEaten = null;
+    for(let food of foods.values()){
+        if(collision(pacman, food)){
+            foodEaten = food;
+            score += 10;
+            break;
+        }
+    }
+    foods.delete(foodEaten);
 }
 
 function movePacman(e){
